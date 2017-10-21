@@ -3,12 +3,15 @@ using Android.Widget;
 using Android.OS;
 using Android.Content;
 using Android.Preferences;
+using System;
 
 namespace PillPilot_v3
 {
     [Activity(Label = "PillPilot_v3", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        private object now;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -217,14 +220,46 @@ namespace PillPilot_v3
                 editor.Apply();
             };
 
-
-
-
             morgenTaget1.Click += (o, e) => {
                 if (morgenTaget1.Checked)
-                    morgenNavn1.Text = "Ole";
+                    morgenHvornår1.Text = DateTime.Now.ToString("HH:mm");
                 else
-                    morgenNavn1.Text = "Hans";
+                    morgenHvornår1.Text = "";
+            };
+
+            morgenTaget2.Click += (o, e) => {
+                if (morgenTaget2.Checked)
+                    morgenHvornår2.Text = DateTime.Now.ToString("HH:mm");
+                else
+                    morgenHvornår2.Text = "";
+            };
+
+            middagTaget1.Click += (o, e) => {
+                if (middagTaget1.Checked)
+                    middagHvornår1.Text = DateTime.Now.ToString("HH:mm");
+                else
+                    middagHvornår1.Text = "";
+            };
+
+            middagTaget2.Click += (o, e) => {
+                if (middagTaget2.Checked)
+                    middagHvornår2.Text = DateTime.Now.ToString("HH:mm");
+                else
+                    middagHvornår2.Text = "";
+            };
+
+            aftenTaget1.Click += (o, e) => {
+                if (aftenTaget1.Checked)
+                    aftenHvornår1.Text = DateTime.Now.ToString("HH:mm");
+                else
+                    aftenHvornår1.Text = "";
+            };
+
+            aftenTaget2.Click += (o, e) => {
+                if (aftenTaget2.Checked)
+                    aftenHvornår2.Text = DateTime.Now.ToString("HH:mm");
+                else
+                    aftenHvornår2.Text = "";
             };
 
 
