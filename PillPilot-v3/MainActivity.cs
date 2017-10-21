@@ -216,7 +216,24 @@ namespace PillPilot_v3
                 editor.PutString("aftenAlarm2", e.Text.ToString());
                 editor.Apply();
             };
+
+
+
+
+            morgenTaget1.Click += (o, e) => {
+                if (morgenTaget1.Checked)
+                    morgenNavn1.Text = "Ole";
+                else
+                    morgenNavn1.Text = "Hans";
+            };
+
+
+
         }
     }
+
+
+
+
 }
 
