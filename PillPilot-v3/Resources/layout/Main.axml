@@ -12,29 +12,43 @@
         <TextView
             android:text="NAVN"
             android:id="@+id/labelNAVN"
-            android:layout_marginRight="70.0dp" />
+            android:layout_marginRight="70.0dp"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
         <TextView
             android:text="DOSIS"
             android:id="@+id/labelDOSIS"
-            android:layout_marginRight="50.0dp" />
+            android:layout_marginRight="40.5dp"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
         <TextView
             android:text="ANTAL"
             android:id="@+id/labelANTAL"
-            android:layout_marginRight="30.0dp" />
+            android:layout_marginRight="30.0dp"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
         <TextView
             android:text="ALARM"
             android:id="@+id/labelALARM"
-            android:layout_marginRight="50.0dp" />
+            android:layout_marginRight="50.0dp"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
         <TextView
             android:text="TAGET?"
             android:id="@+id/labelTAGET"
-            android:layout_marginRight="50.0dp" />
+            android:layout_marginRight="50.0dp"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
         <TextView
             android:text="HVORNÅR?"
-            android:id="@+id/labelHVORNÅR" />
+            android:id="@+id/labelHVORNÅR"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
         <TextView
             android:text="Morgen"
-            android:id="@+id/labelMorgen" />
+            android:id="@+id/labelMorgen"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textStyle="bold" />
         <TextView
             android:text=""
             android:id="@+id/morgenBlank2" />
@@ -112,7 +126,9 @@
             android:textSize="14dp" />
         <TextView
             android:text="Middag"
-            android:id="@+id/labelMiddag" />
+            android:id="@+id/labelMiddag"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textStyle="bold" />
         <TextView
             android:text=""
             android:id="@+id/middagBlank2" />
@@ -190,7 +206,9 @@
             android:textSize="14dp" />
         <TextView
             android:text="Aften"
-            android:id="@+id/labelAften" />
+            android:id="@+id/labelAften"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textStyle="bold" />
         <TextView
             android:text=""
             android:id="@+id/aftenBlank2" />
