@@ -4,17 +4,28 @@ using Android.OS;
 using Android.Content;
 using Android.Preferences;
 using System;
+using System.Timers;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace PillPilot_v3
 {
+    /*
+    public class MainTimer
+    {
+        public Timer mt;
+    }
+    */
+
     [Activity(Label = "PillPilot_v3", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        private object now;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+
+
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -60,6 +71,8 @@ namespace PillPilot_v3
             EditText aftenAlarm2 = FindViewById<EditText>(Resource.Id.aftenAlarm2);
             CheckBox aftenTaget2 = FindViewById<CheckBox>(Resource.Id.aftenTaget2);
             EditText aftenHvornår2 = FindViewById<EditText>(Resource.Id.aftenHvornår2);
+
+            
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             ISharedPreferencesEditor editor = prefs.Edit();
@@ -261,10 +274,51 @@ namespace PillPilot_v3
                 else
                     aftenHvornår2.Text = "";
             };
+            /*
+            Stopwatch mainStopwatch = new Stopwatch();
+            mainStopwatch.Start();
+            if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text) { 
+                mainStopwatch.Stop();
+                morgenNavn1.Text = mainStopwatch.Elapsed.Seconds.ToString();
+            }
+            //morgenNavn1.Text="Alarm";
+
+            */
+            TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
+            TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
+
+            int c = 0;
+            Timer mainTimer = new Timer();
+            mainTimer.Interval = 100;
+            mainTimer.Elapsed += OnTimedEvent;
+            mainTimer.AutoReset = true;
+            mainTimer.Enabled = true;
+                          
+
+            void OnTimedEvent(Object source, ElapsedEventArgs e)
+            {
+                c++;
+                labelNAVN.Text = c.ToString();
+                labelDOSIS.Text = DateTime.Now.ToString("HH:mm");
+                //labelNAVN.Text = DateTime.Now.ToString("HH:mm");
+                
+                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
+                {mainTimer.Enabled = false; }
+                
+            }
+
 
 
 
         }
+
+
+
+
+
+
+
+
     }
 
 
