@@ -289,7 +289,7 @@ namespace PillPilot_v3
 
             int c = 0;
             Timer mainTimer = new Timer();
-            mainTimer.Interval = 100;
+            mainTimer.Interval = 5000;
             mainTimer.Elapsed += OnTimedEvent;
             mainTimer.AutoReset = true;
             mainTimer.Enabled = true;
@@ -297,13 +297,14 @@ namespace PillPilot_v3
 
             void OnTimedEvent(Object source, ElapsedEventArgs e)
             {
+                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
+                { mainTimer.Enabled = false; }
                 c++;
                 labelNAVN.Text = c.ToString();
                 labelDOSIS.Text = DateTime.Now.ToString("HH:mm");
                 //labelNAVN.Text = DateTime.Now.ToString("HH:mm");
                 
-                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
-                {mainTimer.Enabled = false; }
+                
                 
             }
 
