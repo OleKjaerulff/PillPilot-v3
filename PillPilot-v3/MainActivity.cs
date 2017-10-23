@@ -7,6 +7,7 @@ using System;
 using System.Timers;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Android.Media;
 
 namespace PillPilot_v3
 {
@@ -287,21 +288,26 @@ namespace PillPilot_v3
             TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
             TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
 
-            int c = 0;
+            MediaPlayer badinerie;
+            badinerie = MediaPlayer.Create(this, Resource.Raw.Badinerie);
+
+            //int c = 0;
             Timer mainTimer = new Timer();
             mainTimer.Interval = 5000;
             mainTimer.Elapsed += OnTimedEvent;
             mainTimer.AutoReset = true;
             mainTimer.Enabled = true;
-                          
 
             void OnTimedEvent(Object source, ElapsedEventArgs e)
             {
-                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
-                { mainTimer.Enabled = false; }
-                c++;
-                labelNAVN.Text = c.ToString();
-                labelDOSIS.Text = DateTime.Now.ToString("HH:mm");
+                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text){
+                    mainTimer.Enabled = false;
+                    badinerie.Start();
+                }
+
+                
+                //labelNAVN.Text = c.ToString();
+                //labelDOSIS.Text = DateTime.Now.ToString("HH:mm");
                 //labelNAVN.Text = DateTime.Now.ToString("HH:mm");
                 
                 
