@@ -299,6 +299,8 @@ namespace PillPilot_v3
             System.Timers.Timer mainTimer = new System.Timers.Timer();
             mainTimer.Interval = 2000;
 
+//tip from: https://developer.xamarin.com/guides/android/advanced_topics/writing_responsive_applications/
+            //ThreadPool.QueueUserWorkItem(o => slowMethod());
 
             checkBoxSTART.Click += (o, e) =>
             {
@@ -315,15 +317,6 @@ namespace PillPilot_v3
 
             void OnTimedEvent(Object source, ElapsedEventArgs e)
             {
-                slowMethod();
-            }
-
-
-            //tip from: https://developer.xamarin.com/guides/android/advanced_topics/writing_responsive_applications/
-            ThreadPool.QueueUserWorkItem(o => slowMethod());
-
-            void slowMethod()
-            {
                 RunOnUiThread(() =>
                 {
                     if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
@@ -333,8 +326,16 @@ namespace PillPilot_v3
                         c++;
                         labelNAVN.Text = c.ToString();
                     }
-                });
+                }
+                );
             }
+
+
+            
+
+          
+              
+            
         }
      }
 
