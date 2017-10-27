@@ -8,17 +8,14 @@ using System.Timers;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Android.Media;
+using Android.Content.PM;
+using System.Threading;
 
 namespace PillPilot_v3
 {
-    /*
-    public class MainTimer
-    {
-        public Timer mt;
-    }
-    */
 
-    [Activity(Label = "PillPilot_v3", MainLauncher = true)]
+    [Activity(Label = "PillPilot_v3", MainLauncher = true, ScreenOrientation = ScreenOrientation.Landscape)]
+    //maybe later, for icon: [Activity(Label = "PillPilot_v3", MainLauncher = true, Icon = "@drawable/Icon", ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : Activity
     {
 
@@ -73,7 +70,12 @@ namespace PillPilot_v3
             CheckBox aftenTaget2 = FindViewById<CheckBox>(Resource.Id.aftenTaget2);
             EditText aftenHvornår2 = FindViewById<EditText>(Resource.Id.aftenHvornår2);
 
-            
+            CheckBox checkBoxSTART = FindViewById<CheckBox>(Resource.Id.checkBoxSTART);
+
+            int c = 0;
+
+            MediaPlayer badinerie;
+            badinerie = MediaPlayer.Create(this, Resource.Raw.Badinerie);
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             ISharedPreferencesEditor editor = prefs.Edit();
@@ -115,9 +117,9 @@ namespace PillPilot_v3
             aftenHvornår2.Text = prefs.GetString("aftenHvornår2", "");
 
             morgenNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
-                    editor.PutString("morgenNavn1", e.Text.ToString());
-                    editor.Apply(); 
-                };
+                editor.PutString("morgenNavn1", e.Text.ToString());
+                editor.Apply();
+            };
 
             morgenDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
                 editor.PutString("morgenDosis1", e.Text.ToString());
@@ -235,8 +237,12 @@ namespace PillPilot_v3
             };
 
             morgenTaget1.Click += (o, e) => {
-                if (morgenTaget1.Checked)
+                if (morgenTaget1.Checked) {
                     morgenHvornår1.Text = DateTime.Now.ToString("HH:mm");
+                    badinerie.Stop();
+                    c = 0;
+                    badinerie.Reset();
+                }
                 else
                     morgenHvornår1.Text = "";
             };
@@ -288,48 +294,68 @@ namespace PillPilot_v3
             TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
             TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
 
-            MediaPlayer badinerie;
-            badinerie = MediaPlayer.Create(this, Resource.Raw.Badinerie);
 
-            //int c = 0;
-            Timer mainTimer = new Timer();
-            mainTimer.Interval = 5000;
-            mainTimer.Elapsed += OnTimedEvent;
-            mainTimer.AutoReset = true;
-            mainTimer.Enabled = true;
+
+            System.Timers.Timer mainTimer = new System.Timers.Timer();
+            mainTimer.Interval = 2000;
+
+
+            checkBoxSTART.Click += (o, e) =>
+            {
+                if (checkBoxSTART.Checked)
+                {
+                    String mA1 = morgenAlarm1.Text;
+                    mainTimer.AutoReset = true;
+                    mainTimer.Enabled = true;
+                    mainTimer.Elapsed += OnTimedEvent;
+                }
+                else
+                { mainTimer.Enabled = false; };
+            };
 
             void OnTimedEvent(Object source, ElapsedEventArgs e)
             {
-                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text){
-                    mainTimer.Enabled = false;
-                    badinerie.Start();
-                }
-
-                
-                //labelNAVN.Text = c.ToString();
-                //labelDOSIS.Text = DateTime.Now.ToString("HH:mm");
-                //labelNAVN.Text = DateTime.Now.ToString("HH:mm");
-                
-                
-                
+                slowMethod();
             }
 
 
+            //tip from: https://developer.xamarin.com/guides/android/advanced_topics/writing_responsive_applications/
+            ThreadPool.QueueUserWorkItem(o => slowMethod());
 
-
+            void slowMethod()
+            {
+                RunOnUiThread(() =>
+                {
+                    if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
+                    {
+                        //mainTimer.Enabled = false;
+                        //badinerie.Start();
+                        c++;
+                        labelNAVN.Text = c.ToString();
+                    }
+                });
+            }
         }
-
-
-
-
-
-
-
-
-    }
-
-
-
+     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
 

@@ -55,7 +55,8 @@
             android:textColor="@android:color/holo_purple"
             android:textStyle="bold"
             android:layout_column="5"
-            android:layout_row="0" />
+            android:layout_row="0"
+            android:layout_marginRight="0.0dp" />
         <TextView
             android:text="Morgen"
             android:id="@+id/labelMorgen"
@@ -404,8 +405,15 @@
             android:textSize="14dp"
             android:layout_column="5"
             android:layout_row="9" />
-        <Button
-            android:text="Start"
-            android:id="@+id/button1" />
+        <CheckBox
+            android:text=""
+            android:id="@+id/aftenTaget2"
+            android:height="36dp"
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="9" />
+        <CheckBox
+            android:text="START"
+            android:id="@+id/checkBoxSTART" />
     </GridLayout>
 </LinearLayout>
