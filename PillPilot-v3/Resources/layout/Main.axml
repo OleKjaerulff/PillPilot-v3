@@ -7,282 +7,405 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gridLayout1"
-        android:columnCount="6"
+        android:columnCount="7"
         android:rowCount="12">
         <TextView
             android:text="NAVN"
             android:id="@+id/labelNAVN"
             android:layout_marginRight="70.0dp"
             android:textColor="@android:color/holo_purple"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="0" />
         <TextView
             android:text="DOSIS"
             android:id="@+id/labelDOSIS"
             android:layout_marginRight="40.5dp"
             android:textColor="@android:color/holo_purple"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="1"
+            android:layout_row="0" />
         <TextView
             android:text="ANTAL"
             android:id="@+id/labelANTAL"
             android:layout_marginRight="30.0dp"
             android:textColor="@android:color/holo_purple"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="2"
+            android:layout_row="0" />
         <TextView
             android:text="ALARM"
             android:id="@+id/labelALARM"
             android:layout_marginRight="50.0dp"
             android:textColor="@android:color/holo_purple"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="3"
+            android:layout_row="0" />
         <TextView
             android:text="TAGET?"
             android:id="@+id/labelTAGET"
             android:layout_marginRight="50.0dp"
             android:textColor="@android:color/holo_purple"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="4"
+            android:layout_row="0" />
         <TextView
             android:text="HVORNÅR?"
             android:id="@+id/labelHVORNÅR"
             android:textColor="@android:color/holo_purple"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="5"
+            android:layout_row="0" />
         <TextView
             android:text="Morgen"
             android:id="@+id/labelMorgen"
             android:textColor="@android:color/holo_blue_bright"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="1" />
         <TextView
             android:text=""
-            android:id="@+id/morgenBlank2" />
+            android:id="@+id/morgenBlank2"
+            android:layout_column="1"
+            android:layout_row="1" />
         <TextView
             android:text=""
-            android:id="@+id/morgenBlank3" />
+            android:id="@+id/morgenBlank3"
+            android:layout_column="2"
+            android:layout_row="1" />
         <TextView
             android:text=""
-            android:id="@+id/morgenBlank4" />
+            android:id="@+id/morgenBlank4"
+            android:layout_column="3"
+            android:layout_row="1" />
         <TextView
             android:text=""
-            android:id="@+id/morgenBlank5" />
+            android:id="@+id/morgenBlank5"
+            android:layout_column="4"
+            android:layout_row="1" />
         <TextView
             android:text=""
-            android:id="@+id/morgenBlank6" />
+            android:id="@+id/morgenBlank6"
+            android:layout_column="5"
+            android:layout_row="1" />
         <EditText
             android:id="@+id/morgenNavn1"
             android:text="Lamotrigin"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="0"
+            android:layout_row="2" />
         <EditText
             android:id="@+id/morgenDosis1"
             android:text="200 mg"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="1"
+            android:layout_row="2" />
         <EditText
             android:id="@+id/morgenAntal1"
             android:text="1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="2"
+            android:layout_row="2" />
         <EditText
             android:id="@+id/morgenAlarm1"
             android:text="08:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="3"
+            android:layout_row="2" />
         <CheckBox
             android:text=""
             android:id="@+id/morgenTaget1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="2" />
         <EditText
             android:id="@+id/morgenHvornår1"
             android:text="09:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="5"
+            android:layout_row="2" />
         <EditText
             android:id="@+id/morgenNavn2"
             android:text="Lamotrigin"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="0"
+            android:layout_row="3" />
         <EditText
             android:id="@+id/morgenDosis2"
             android:text="100 mg"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="1"
+            android:layout_row="3" />
         <EditText
             android:id="@+id/morgenAntal2"
             android:text="1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="2"
+            android:layout_row="3" />
         <EditText
             android:id="@+id/morgenAlarm2"
             android:text="08:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="3"
+            android:layout_row="3" />
         <CheckBox
             android:text=""
             android:id="@+id/morgenTaget2"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="3" />
         <EditText
             android:id="@+id/morgenHvornår2"
             android:text="09:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="5"
+            android:layout_row="3" />
         <TextView
             android:text="Middag"
             android:id="@+id/labelMiddag"
             android:textColor="@android:color/holo_blue_bright"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="4" />
         <TextView
             android:text=""
-            android:id="@+id/middagBlank2" />
+            android:id="@+id/middagBlank2"
+            android:layout_column="1"
+            android:layout_row="4" />
         <TextView
             android:text=""
-            android:id="@+id/middagBlank3" />
+            android:id="@+id/middagBlank3"
+            android:layout_column="2"
+            android:layout_row="4" />
         <TextView
             android:text=""
-            android:id="@+id/middagBlank4" />
+            android:id="@+id/middagBlank4"
+            android:layout_column="3"
+            android:layout_row="4" />
         <TextView
             android:text=""
-            android:id="@+id/middagBlank5" />
+            android:id="@+id/middagBlank5"
+            android:layout_column="4"
+            android:layout_row="4" />
         <TextView
             android:text=""
-            android:id="@+id/middagBlank6" />
+            android:id="@+id/middagBlank6"
+            android:layout_column="5"
+            android:layout_row="4" />
         <EditText
             android:id="@+id/middagNavn1"
             android:text="Olanzapin"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="0"
+            android:layout_row="5" />
         <EditText
             android:id="@+id/middagDosis1"
             android:text="10 mg"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="1"
+            android:layout_row="5" />
         <EditText
             android:id="@+id/middagAntal1"
             android:text="1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="2"
+            android:layout_row="5" />
         <EditText
             android:id="@+id/middagAlarm1"
             android:text="12:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="3"
+            android:layout_row="5" />
         <CheckBox
             android:text=""
             android:id="@+id/middagTaget1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="5" />
         <EditText
             android:id="@+id/middagHvornår1"
             android:text="13:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="5"
+            android:layout_row="5" />
         <EditText
             android:id="@+id/middagNavn2"
             android:text="Olanzapin"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="0"
+            android:layout_row="6" />
         <EditText
             android:id="@+id/middagDosis2"
             android:text="2.5"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="1"
+            android:layout_row="6" />
         <EditText
             android:id="@+id/middagAntal2"
             android:text="1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="2"
+            android:layout_row="6" />
         <EditText
             android:id="@+id/middagAlarm2"
             android:text="12:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="3"
+            android:layout_row="6" />
         <CheckBox
             android:text=""
             android:id="@+id/middagTaget2"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="6" />
         <EditText
             android:id="@+id/middagHvornår2"
             android:text="13:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="5"
+            android:layout_row="6" />
         <TextView
             android:text="Aften"
             android:id="@+id/labelAften"
             android:textColor="@android:color/holo_blue_bright"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="7" />
         <TextView
             android:text=""
-            android:id="@+id/aftenBlank2" />
+            android:id="@+id/aftenBlank2"
+            android:layout_column="1"
+            android:layout_row="7" />
         <TextView
             android:text=""
-            android:id="@+id/aftenBlank3" />
+            android:id="@+id/aftenBlank3"
+            android:layout_column="2"
+            android:layout_row="7" />
         <TextView
             android:text=""
-            android:id="@+id/aftenBlank4" />
+            android:id="@+id/aftenBlank4"
+            android:layout_column="3"
+            android:layout_row="7" />
         <TextView
             android:text=""
-            android:id="@+id/aftenBlank5" />
+            android:id="@+id/aftenBlank5"
+            android:layout_column="4"
+            android:layout_row="7" />
         <TextView
             android:text=""
-            android:id="@+id/aftenBlank6" />
+            android:id="@+id/aftenBlank6"
+            android:layout_column="5"
+            android:layout_row="7" />
         <EditText
             android:id="@+id/aftenNavn1"
             android:text="Quietiapin"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="0"
+            android:layout_row="8" />
         <EditText
             android:id="@+id/aftenDosis1"
             android:text="200 mg"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="1"
+            android:layout_row="8" />
         <EditText
             android:id="@+id/aftenAntal1"
             android:text="1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="2"
+            android:layout_row="8" />
         <EditText
             android:id="@+id/aftenAlarm1"
             android:text="18:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="3"
+            android:layout_row="8" />
         <CheckBox
             android:text=""
             android:id="@+id/aftenTaget1"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="8" />
         <EditText
             android:id="@+id/aftenHvornår1"
             android:text="19:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="5"
+            android:layout_row="8" />
         <EditText
             android:id="@+id/aftenNavn2"
             android:text="Litarex"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="0"
+            android:layout_row="9" />
         <EditText
             android:id="@+id/aftenDosis2"
             android:text="6 mmLi+"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="1"
+            android:layout_row="9" />
         <EditText
             android:id="@+id/aftenAntal2"
             android:text="2"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="2"
+            android:layout_row="9" />
         <EditText
             android:id="@+id/aftenAlarm2"
             android:text="18:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="3"
+            android:layout_row="9" />
         <CheckBox
             android:text=""
             android:id="@+id/aftenTaget2"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="4"
+            android:layout_row="9" />
         <EditText
             android:id="@+id/aftenHvornår2"
             android:text="19:00"
             android:height="36dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_column="5"
+            android:layout_row="9" />
+        <Button
+            android:text="Start"
+            android:id="@+id/button1" />
     </GridLayout>
 </LinearLayout>
