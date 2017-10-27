@@ -22,14 +22,23 @@ namespace PillPilot_v3
     public class MainActivity : Activity
     {
 
-
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
+            TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
+            TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
+
+            int c = 0;
+
+            Timer mainTimer = new Timer();
+            mainTimer.Interval = 5000;
+            mainTimer.AutoReset = true;
+            mainTimer.Enabled = true;
+            mainTimer.Elapsed += OnTimedEvent;
 
             EditText morgenNavn1 = FindViewById<EditText>(Resource.Id.morgenNavn1);
             EditText morgenDosis1 = FindViewById<EditText>(Resource.Id.morgenDosis1);
@@ -62,6 +71,7 @@ namespace PillPilot_v3
             EditText aftenNavn1 = FindViewById<EditText>(Resource.Id.aftenNavn1);
             EditText aftenDosis1 = FindViewById<EditText>(Resource.Id.aftenDosis1);
             EditText aftenAntal1 = FindViewById<EditText>(Resource.Id.aftenAntal1);
+
             EditText aftenAlarm1 = FindViewById<EditText>(Resource.Id.aftenAlarm1);
             CheckBox aftenTaget1 = FindViewById<CheckBox>(Resource.Id.aftenTaget1);
             EditText aftenHvornår1 = FindViewById<EditText>(Resource.Id.aftenHvornår1);
@@ -73,7 +83,8 @@ namespace PillPilot_v3
             CheckBox aftenTaget2 = FindViewById<CheckBox>(Resource.Id.aftenTaget2);
             EditText aftenHvornår2 = FindViewById<EditText>(Resource.Id.aftenHvornår2);
 
-            
+            MediaPlayer badinerie;
+            badinerie = MediaPlayer.Create(this, Resource.Raw.Badinerie);
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             ISharedPreferencesEditor editor = prefs.Edit();
@@ -114,162 +125,204 @@ namespace PillPilot_v3
             aftenAlarm2.Text = prefs.GetString("aftenAlarm2", "");
             aftenHvornår2.Text = prefs.GetString("aftenHvornår2", "");
 
-            morgenNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
-                    editor.PutString("morgenNavn1", e.Text.ToString());
-                    editor.Apply(); 
-                };
+            morgenNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
+                editor.PutString("morgenNavn1", e.Text.ToString());
+                editor.Apply();
+            };
 
-            morgenDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            morgenDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("morgenDosis1", e.Text.ToString());
                 editor.Apply();
             };
 
-            morgenAntal1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            morgenAntal1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("morgenAntal1", e.Text.ToString());
                 editor.Apply();
             };
 
-            morgenAlarm1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
-                editor.PutString("morgenAlarm1", e.Text.ToString());
-                editor.Apply();
+
+            morgenAlarm1.TextChanged += async (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
+                await Task.Run(() =>
+                {
+                    editor.PutString("morgenAlarm1", e.Text.ToString());
+                    editor.Apply();
+                });
             };
 
-            morgenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            morgenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("morgenNavn2", e.Text.ToString());
                 editor.Apply();
             };
 
-            morgenDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            morgenDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("morgenDosis2", e.Text.ToString());
                 editor.Apply();
             };
 
-            morgenAntal2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            morgenAntal2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("morgenAntal2", e.Text.ToString());
                 editor.Apply();
             };
 
-            morgenAlarm2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
-                editor.PutString("morgenAlarm2", e.Text.ToString());
-                editor.Apply();
-            };
+            morgenAlarm2.TextChanged += async (object sender, Android.Text.TextChangedEventArgs e) =>
+           {
+               editor.PutString("morgenAlarm2", e.Text.ToString());
+               editor.Apply();
+           };
 
-            middagNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagNavn1", e.Text.ToString());
                 editor.Apply();
             };
 
-            middagDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagDosis1", e.Text.ToString());
                 editor.Apply();
             };
 
-            middagAntal1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagAntal1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagAntal1", e.Text.ToString());
                 editor.Apply();
             };
 
-            middagAlarm1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagAlarm1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
+                mainTimer.Stop();
                 editor.PutString("middagAlarm1", e.Text.ToString());
                 editor.Apply();
+                mainTimer.Start();
             };
 
-            middagNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagNavn2", e.Text.ToString());
                 editor.Apply();
             };
 
-            middagDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagDosis2", e.Text.ToString());
                 editor.Apply();
             };
 
-            middagAntal2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            middagAntal2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagAntal2", e.Text.ToString());
                 editor.Apply();
             };
 
-            middagAlarm2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            int n = 0;
+            middagAlarm2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("middagAlarm2", e.Text.ToString());
                 editor.Apply();
+                n=n+1;
             };
 
-            aftenNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenNavn1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenNavn1", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenDosis1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenDosis1", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenAntal1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenAntal1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenAntal1", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenAlarm1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenAlarm1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenAlarm1", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenNavn2", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenDosis2", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenAntal2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenAntal2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenAntal2", e.Text.ToString());
                 editor.Apply();
             };
 
-            aftenAlarm2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+            aftenAlarm2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
                 editor.PutString("aftenAlarm2", e.Text.ToString());
                 editor.Apply();
             };
 
-            morgenTaget1.Click += (o, e) => {
+            morgenTaget1.Click += (o, e) =>
+            {
                 if (morgenTaget1.Checked)
+                {
                     morgenHvornår1.Text = DateTime.Now.ToString("HH:mm");
+                    badinerie.Stop();
+                    badinerie.Reset();
+                }
                 else
                     morgenHvornår1.Text = "";
             };
 
-            morgenTaget2.Click += (o, e) => {
+            morgenTaget2.Click += (o, e) =>
+            {
                 if (morgenTaget2.Checked)
                     morgenHvornår2.Text = DateTime.Now.ToString("HH:mm");
                 else
                     morgenHvornår2.Text = "";
             };
 
-            middagTaget1.Click += (o, e) => {
+            middagTaget1.Click += (o, e) =>
+            {
                 if (middagTaget1.Checked)
                     middagHvornår1.Text = DateTime.Now.ToString("HH:mm");
                 else
                     middagHvornår1.Text = "";
             };
 
-            middagTaget2.Click += (o, e) => {
+            middagTaget2.Click += (o, e) =>
+            {
                 if (middagTaget2.Checked)
                     middagHvornår2.Text = DateTime.Now.ToString("HH:mm");
                 else
                     middagHvornår2.Text = "";
             };
 
-            aftenTaget1.Click += (o, e) => {
+            aftenTaget1.Click += (o, e) =>
+            {
                 if (aftenTaget1.Checked)
                     aftenHvornår1.Text = DateTime.Now.ToString("HH:mm");
                 else
                     aftenHvornår1.Text = "";
             };
 
-            aftenTaget2.Click += (o, e) => {
+            aftenTaget2.Click += (o, e) =>
+            {
                 if (aftenTaget2.Checked)
                     aftenHvornår2.Text = DateTime.Now.ToString("HH:mm");
                 else
@@ -285,51 +338,27 @@ namespace PillPilot_v3
             //morgenNavn1.Text="Alarm";
 
             */
-            TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
-            TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
+            
 
-            MediaPlayer badinerie;
-            badinerie = MediaPlayer.Create(this, Resource.Raw.Badinerie);
-
-            //int c = 0;
-            Timer mainTimer = new Timer();
-            mainTimer.Interval = 5000;
-            mainTimer.Elapsed += OnTimedEvent;
-            mainTimer.AutoReset = true;
-            mainTimer.Enabled = true;
-
-            void OnTimedEvent(Object source, ElapsedEventArgs e)
-            {
-                if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text){
-                    mainTimer.Enabled = false;
+                /*if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
+                {
                     badinerie.Start();
                 }
+                */
+            
+         
+            
 
-                
-                //labelNAVN.Text = c.ToString();
-                //labelDOSIS.Text = DateTime.Now.ToString("HH:mm");
-                //labelNAVN.Text = DateTime.Now.ToString("HH:mm");
-                
-                
-                
+        
+
+
+              void OnTimedEvent (Object source, ElapsedEventArgs e)
+            {
+                    c++;
+                    labelNAVN.Text = c.ToString();
             }
-
-
-
-
+            labelDOSIS.Text = n.ToString();
         }
-
-
-
-
-
-
-
-
     }
-
-
-
-
 }
 
