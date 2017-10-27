@@ -88,10 +88,8 @@
             android:text=""
             android:id="@+id/morgenTaget1"
             android:height="36dp"
-            android:textSize="14dp"
-            />
-            
-      <EditText
+            android:textSize="14dp" />
+        <EditText
             android:id="@+id/morgenHvornår1"
             android:text="09:00"
             android:height="36dp"
