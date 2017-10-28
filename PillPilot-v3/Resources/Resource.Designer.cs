@@ -262,6 +262,12 @@ namespace PillPilot_v3
 			// aapt resource value: 0x7f030000
 			public const int Badinerie = 2130903040;
 			
+			// aapt resource value: 0x7f030001
+			public const int OSoleMio = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int TaagenLetter = 2130903042;
+			
 			static Raw()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

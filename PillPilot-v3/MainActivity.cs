@@ -77,6 +77,12 @@ namespace PillPilot_v3
             MediaPlayer badinerie;
             badinerie = MediaPlayer.Create(this, Resource.Raw.Badinerie);
 
+            MediaPlayer taagenLetter;
+            taagenLetter = MediaPlayer.Create(this, Resource.Raw.TaagenLetter);
+
+            MediaPlayer oSoleMio;
+            oSoleMio = MediaPlayer.Create(this, Resource.Raw.OSoleMio);
+
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             ISharedPreferencesEditor editor = prefs.Edit();
 
@@ -251,50 +257,38 @@ namespace PillPilot_v3
                 }
             };
 
-            morgenTaget2.Click += (o, e) => {
-                if (morgenTaget2.Checked)
-                    morgenHvornår2.Text = DateTime.Now.ToString("HH:mm");
-                else
-                    morgenHvornår2.Text = "";
-            };
-
             middagTaget1.Click += (o, e) => {
                 if (middagTaget1.Checked)
+                {
                     middagHvornår1.Text = DateTime.Now.ToString("HH:mm");
+                    oSoleMio.Stop();
+                    c = 0;
+                }
                 else
+                {
                     middagHvornår1.Text = "";
-            };
-
-            middagTaget2.Click += (o, e) => {
-                if (middagTaget2.Checked)
-                    middagHvornår2.Text = DateTime.Now.ToString("HH:mm");
-                else
-                    middagHvornår2.Text = "";
+                    MediaPlayer oSoleMioNew;
+                    oSoleMioNew = MediaPlayer.Create(this, Resource.Raw.OSoleMio);
+                    oSoleMio = oSoleMioNew;
+                }
             };
 
             aftenTaget1.Click += (o, e) => {
                 if (aftenTaget1.Checked)
+                {
                     aftenHvornår1.Text = DateTime.Now.ToString("HH:mm");
+                    taagenLetter.Stop();
+                    c = 0;
+                }
                 else
+                {
                     aftenHvornår1.Text = "";
+                    MediaPlayer taagenLetterNew;
+                    taagenLetterNew = MediaPlayer.Create(this, Resource.Raw.TaagenLetter);
+                    taagenLetter = taagenLetterNew;
+                }
             };
 
-            aftenTaget2.Click += (o, e) => {
-                if (aftenTaget2.Checked)
-                    aftenHvornår2.Text = DateTime.Now.ToString("HH:mm");
-                else
-                    aftenHvornår2.Text = "";
-            };
-            /*
-            Stopwatch mainStopwatch = new Stopwatch();
-            mainStopwatch.Start();
-            if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text) { 
-                mainStopwatch.Stop();
-                morgenNavn1.Text = mainStopwatch.Elapsed.Seconds.ToString();
-            }
-            //morgenNavn1.Text="Alarm";
-
-            */
             TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
             TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
 
@@ -325,20 +319,28 @@ namespace PillPilot_v3
                 {
                     if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
                     {
-                        //mainTimer.Enabled = false;
                         badinerie.Start();
                         c++;
                         labelNAVN.Text = c.ToString();
                     }
-                }
+                   
+                    else if (DateTime.Now.ToString("HH:mm") == middagAlarm1.Text)
+                    {
+                        oSoleMio.Start();
+                        c++;
+                        labelNAVN.Text = c.ToString();
+                    }
+
+                    else if (DateTime.Now.ToString("HH:mm") == aftenAlarm1.Text)
+                    {
+                        taagenLetter.Start();
+                        c++;
+                        labelNAVN.Text = c.ToString();
+                    }
+,                }
                 );
             }
 
-
-            
-
-          
-              
             
         }
      }
