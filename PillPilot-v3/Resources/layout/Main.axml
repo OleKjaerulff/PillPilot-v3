@@ -165,14 +165,16 @@
             android:height="36dp"
             android:textSize="14dp"
             android:layout_column="4"
-            android:layout_row="3" />
+            android:layout_row="3"
+            android:visibility="invisible" />
         <EditText
             android:id="@+id/morgenHvornår2"
             android:text="09:00"
             android:height="36dp"
             android:textSize="14dp"
             android:layout_column="5"
-            android:layout_row="3" />
+            android:layout_row="3"
+            android:visibility="invisible" />
         <TextView
             android:text="Middag"
             android:id="@+id/labelMiddag"
@@ -281,14 +283,16 @@
             android:height="36dp"
             android:textSize="14dp"
             android:layout_column="4"
-            android:layout_row="6" />
+            android:layout_row="6"
+            android:visibility="invisible" />
         <EditText
             android:id="@+id/middagHvornår2"
             android:text="13:00"
             android:height="36dp"
             android:textSize="14dp"
             android:layout_column="5"
-            android:layout_row="6" />
+            android:layout_row="6"
+            android:visibility="invisible" />
         <TextView
             android:text="Aften"
             android:id="@+id/labelAften"
@@ -397,21 +401,16 @@
             android:height="36dp"
             android:textSize="14dp"
             android:layout_column="4"
-            android:layout_row="9" />
+            android:layout_row="9"
+            android:visibility="invisible" />
         <EditText
             android:id="@+id/aftenHvornår2"
             android:text="19:00"
             android:height="36dp"
             android:textSize="14dp"
             android:layout_column="5"
-            android:layout_row="9" />
-        <CheckBox
-            android:text=""
-            android:id="@+id/aftenTaget2"
-            android:height="36dp"
-            android:textSize="14dp"
-            android:layout_column="4"
-            android:layout_row="9" />
+            android:layout_row="9"
+            android:visibility="invisible" />
         <CheckBox
             android:text="START"
             android:id="@+id/checkBoxSTART" />
