@@ -241,10 +241,15 @@ namespace PillPilot_v3
                     morgenHvornår1.Text = DateTime.Now.ToString("HH:mm");
                     badinerie.Stop();
                     c = 0;
-                    badinerie.Reset();
+
                 }
-                else
-                    morgenHvornår1.Text = "";
+                else { 
+                morgenHvornår1.Text = "";
+                MediaPlayer badinerieNew;
+                badinerieNew = MediaPlayer.Create(this, Resource.Raw.Badinerie);
+                badinerie = badinerieNew;
+                }
+
             };
 
             morgenTaget2.Click += (o, e) => {
@@ -322,7 +327,8 @@ namespace PillPilot_v3
                     if (DateTime.Now.ToString("HH:mm") == morgenAlarm1.Text)
                     {
                         //mainTimer.Enabled = false;
-                        //badinerie.Start();
+                        badinerie.Start();
+                        //badinerie.Release();
                         c++;
                         labelNAVN.Text = c.ToString();
                     }
