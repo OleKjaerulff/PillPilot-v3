@@ -14,6 +14,8 @@ namespace PillPilot_v3
 {
     static class UserData
     {
+        public static string morgenAlarm1Text { get; set; }
         public static string middagAlarm1Text { get; set; }
+        public static string aftenAlarm1Text { get; set; }
     }
 }
