@@ -44,6 +44,9 @@ namespace PillPilot_v3
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f05003f
+			public const int TimePickerDone = 2131034175;
+			
 			// aapt resource value: 0x7f050034
 			public const int aftenAlarm1 = 2131034164;
 			
@@ -230,6 +233,9 @@ namespace PillPilot_v3
 			// aapt resource value: 0x7f050017
 			public const int morgenTaget2 = 2131034135;
 			
+			// aapt resource value: 0x7f05003e
+			public const int timePicker = 2131034174;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -245,6 +251,9 @@ namespace PillPilot_v3
 			
 			// aapt resource value: 0x7f020000
 			public const int Main = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int TimePickerLayout = 2130837505;
 			
 			static Layout()
 			{
