@@ -60,6 +60,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimePickerActivity.cs" />
+    <Compile Include="TimePickerThreeActivity.cs" />
     <Compile Include="TimePickerTwoActivity.cs" />
     <Compile Include="UserData.cs" />
   </ItemGroup>
@@ -72,6 +73,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\TimePickerTwoLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TimePickerThreeLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

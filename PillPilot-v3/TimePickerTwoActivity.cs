@@ -26,6 +26,7 @@ namespace PillPilot_v3
             timePickerTwo.SetIs24HourView(Java.Lang.Boolean.True);
             timePickerTwo.Hour = 24;
             timePickerTwo.Minute = 0;
+
             TimePickerTwoDone.Click += (object sender, EventArgs e) =>
             {
                 var intent = new Intent(this, typeof(MainActivity));

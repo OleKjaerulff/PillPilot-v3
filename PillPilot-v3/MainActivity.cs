@@ -259,6 +259,14 @@ namespace PillPilot_v3
                 editor.Apply();
             };
 
+            aftenAlarm1.Click += (object sender, EventArgs e) =>
+            {
+                var intent = new Intent(this, typeof(TimePickerThreeActivity));
+                StartActivity(intent);
+            };
+
+            aftenAlarm1.Text = UserData.aftenAlarm1Text;
+
             aftenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
                 editor.PutString("aftenNavn2", e.Text.ToString());
