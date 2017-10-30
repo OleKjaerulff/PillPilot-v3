@@ -151,7 +151,7 @@ namespace PillPilot_v3
                 StartActivity(intent);
             };
 
-
+            morgenAlarm1.Text = UserData.morgenAlarm1Text;
 
             morgenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
@@ -197,11 +197,11 @@ namespace PillPilot_v3
 
             middagAlarm1.Click += (object sender, EventArgs e) =>
             {
-                var intent = new Intent(this, typeof(TimePickerActivity));
+                var intent = new Intent(this, typeof(TimePickerTwoActivity));
                 StartActivity(intent);
             };
 
-            morgenAlarm1.Text = UserData.morgenAlarm1Text;
+            middagAlarm1.Text = UserData.middagAlarm1Text;
 
 
             middagAlarm1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>

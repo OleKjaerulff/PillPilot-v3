@@ -240,7 +240,7 @@ namespace PillPilot_v3
 			public const int timePicker = 2131034174;
 			
 			// aapt resource value: 0x7f050040
-			public const int timePicker1 = 2131034176;
+			public const int timePickerTwo = 2131034176;
 			
 			static Id()
 			{

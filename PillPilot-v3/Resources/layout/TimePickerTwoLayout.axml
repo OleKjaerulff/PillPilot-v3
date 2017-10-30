@@ -6,7 +6,7 @@
     <TimePicker
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/timePicker1" />
+        android:id="@+id/timePickerTwo" />
     <Button
         android:text="Færdig"
         android:layout_width="match_parent"
