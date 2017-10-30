@@ -25,7 +25,7 @@ namespace PillPilot_v3
 
             TimePicker timePicker = FindViewById<TimePicker>(Resource.Id.timePicker);
             Button TimePickerDone = FindViewById<Button>(Resource.Id.TimePickerDone);
-          
+            timePicker.SetIs24HourView(Java.Lang.Boolean.True);
             timePicker.Hour = 24;
             timePicker.Minute = 0;
             timePicker.Is24HourView();
@@ -35,7 +35,8 @@ namespace PillPilot_v3
                 StartActivity(intent);
                 int hh = timePicker.Hour;
                 int mm = timePicker.Minute;
-                UserData.middagAlarm1Text = hh.ToString()+":"+mm.ToString();
+                UserData.middagAlarm1Text = timePicker.Hour.ToString("D2") + ":" + timePicker.Minute.ToString("D2");
+
 
 
             };

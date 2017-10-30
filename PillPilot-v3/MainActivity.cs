@@ -18,9 +18,6 @@ namespace PillPilot_v3
     //maybe later, for icon: [Activity(Label = "PillPilot_v3", MainLauncher = true, Icon = "@drawable/Icon", ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : Activity
     {
-
-
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -31,7 +28,7 @@ namespace PillPilot_v3
             EditText morgenNavn1 = FindViewById<EditText>(Resource.Id.morgenNavn1);
             EditText morgenDosis1 = FindViewById<EditText>(Resource.Id.morgenDosis1);
             EditText morgenAntal1 = FindViewById<EditText>(Resource.Id.morgenAntal1);
-            TextView morgenAlarm1 = FindViewById<TextView>(Resource.Id.morgenAlarm1);
+            EditText morgenAlarm1 = FindViewById<EditText>(Resource.Id.morgenAlarm1);
             CheckBox morgenTaget1 = FindViewById<CheckBox>(Resource.Id.morgenTaget1);
             EditText morgenHvornår1 = FindViewById<EditText>(Resource.Id.morgenHvornår1);
 
@@ -147,16 +144,13 @@ namespace PillPilot_v3
             };
             */
 
-            morgenAlarm1.Click += (sender, e) =>
+/*
+            morgenAlarm1.Click += (object sender, EventArgs e) =>
             {
                 var intent = new Intent(this, typeof(TimePickerActivity));
                 StartActivity(intent);
             };
-
-
-
-
-
+*/
             morgenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
                 editor.PutString("morgenNavn2", e.Text.ToString());
@@ -201,7 +195,6 @@ namespace PillPilot_v3
 
             middagAlarm1.Click += (object sender, EventArgs e) =>
             {
-                //middagAlarm1.Text = "changed";
                 var intent = new Intent(this, typeof(TimePickerActivity));
                 StartActivity(intent);
             };
