@@ -17,5 +17,6 @@ namespace PillPilot_v3
         public static string morgenAlarm1Text { get; set; }
         public static string middagAlarm1Text { get; set; }
         public static string aftenAlarm1Text { get; set; }
+
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Android.Media;
 using Android.Content.PM;
 using System.Threading;
+using Android.Util;
 
 namespace PillPilot_v3
 {
@@ -22,8 +23,11 @@ namespace PillPilot_v3
         {
             base.OnCreate(bundle);
 
+            
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
 
             EditText morgenNavn1 = FindViewById<EditText>(Resource.Id.morgenNavn1);
             EditText morgenDosis1 = FindViewById<EditText>(Resource.Id.morgenDosis1);
@@ -67,6 +71,12 @@ namespace PillPilot_v3
             CheckBox aftenTaget2 = FindViewById<CheckBox>(Resource.Id.aftenTaget2);
             EditText aftenHvornår2 = FindViewById<EditText>(Resource.Id.aftenHvornår2);
 
+            TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
+            labelNAVN.PerformClick();
+
+            morgenAlarm1.Text = UserData.morgenAlarm1Text;
+            
+
             CheckBox checkBoxSTART = FindViewById<CheckBox>(Resource.Id.checkBoxSTART);
 
             MediaPlayer badinerie;
@@ -78,13 +88,13 @@ namespace PillPilot_v3
             MediaPlayer oSoleMio;
             oSoleMio = MediaPlayer.Create(this, Resource.Raw.OSoleMio);
 
-            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
             ISharedPreferencesEditor editor = prefs.Edit();
 
             morgenNavn1.Text = prefs.GetString("morgenNavn1", "");
             morgenDosis1.Text = prefs.GetString("morgenDosis1", "");
             morgenAntal1.Text = prefs.GetString("morgenAntal1", "");
-            morgenAlarm1.Text = prefs.GetString("morgenAlarm1", "");
+            //morgenAlarm1.Text = prefs.GetString("morgenAlarm1", "");
             morgenHvornår1.Text = prefs.GetString("morgenHvornår1", "");
 
             morgenNavn2.Text = prefs.GetString("morgenNavn2", "");
@@ -152,12 +162,14 @@ namespace PillPilot_v3
             };
 
             morgenAlarm1.Text = UserData.morgenAlarm1Text;
+            //editor.PutString("morgenAlarm1", UserData.morgenAlarm1Text);
+            //editor.Apply();
 
             morgenNavn2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
-            {
-                editor.PutString("morgenNavn2", e.Text.ToString());
-                editor.Apply();
-            };
+                {
+                    editor.PutString("morgenNavn2", e.Text.ToString());
+                    editor.Apply();
+                };
 
             morgenDosis2.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
@@ -340,7 +352,7 @@ namespace PillPilot_v3
                 }
             };
 
-            TextView labelNAVN = FindViewById<TextView>(Resource.Id.labelNAVN);
+            
             TextView labelDOSIS = FindViewById<TextView>(Resource.Id.labelDOSIS);
 
 
@@ -359,9 +371,18 @@ namespace PillPilot_v3
                     mainTimer.AutoReset = true;
                     mainTimer.Enabled = true;
                     mainTimer.Elapsed += OnTimedEvent;
+
+                    editor.PutString("morgenAlarm1", morgenAlarm1.Text);
+                    editor.Apply();
                 }
                 else
                 { mainTimer.Enabled = false; };
+            };
+
+            labelNAVN.Click += (o, e) =>
+            {
+                //labelNAVN.Text = prefs.GetString("morgenAlarm1", default);
+                morgenAlarm1.Text = prefs.GetString("morgenAlarm1", default);
             };
 
             void OnTimedEvent(Object source, ElapsedEventArgs e)
@@ -384,9 +405,46 @@ namespace PillPilot_v3
                     }
                 });
             }
+
+            labelNAVN.PerformClick();
+
+            //this.Recreate();
+
+
+
         }
+        //public override void OnBackPressed() { Finish(); }
+        public override void OnBackPressed()
+        {
+            //var intent = new Intent(this, typeof(TimePickerActivity));
+            //StartActivity(intent);
+            return;
+        }
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutString("morgenAlarm1Text", UserData.morgenAlarm1Text);
+
+            // always call the base implementation!
+            base.OnSaveInstanceState(outState);
+        }
+
+        protected override void OnRestoreInstanceState(Bundle savedState)
+        {
+            base.OnRestoreInstanceState(savedState);
+            UserData.morgenAlarm1Text = savedState.GetString("morgenAlarm1");
+        }
+
+
+
+
+            
+
+
+
+
     }
 }
+
 
 
 
